@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mon réseau / Recherche</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script defer src="{{ url_for('static', filename='js/reseau.js') }}"></script>
+</head>
+<body>
+
+  <!-- 🟦 Espace réservé pour le header -->
+  <header style="height: 80px;"></header>
+
+  <main class="container">
+    <h1>🔍 Mon réseau d'eau potable</h1>
+
+    <form id="reseau-form">
+      <div class="form-group">
+        <label for="departement">Département :</label>
+        <select id="departement" name="departement">
+          <option value="">-- Choisissez un département --</option>
+          {% for d in departements %}
+            <option value="{{ d.code }}">{{ d.nom }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="commune">Commune :</label>
+        <select id="commune" name="commune" disabled>
+          <option value="">-- Choisissez une commune --</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="reseau">Réseau / Quartier :</label>
+        <select id="reseau" name="reseau" disabled>
+          <option value="">-- Choisissez un réseau --</option>
+        </select>
+      </div>
+    </form>
+
+    <div id="alerte-eau" class="alert" style="display: none;">
+      🚨 Alerte : la qualité de l’eau dans ce réseau est jugée non conforme.
+    </div>
+
+    <section id="infos-reseau" style="display:none;">
+      <h2>Informations sur le réseau</h2>
+      <p><strong>Nom du réseau :</strong> <span id="nom-reseau"></span></p>
+      <p><strong>Quartier :</strong> <span id="quartier"></span></p>
+      <p><strong>Début d’alimentation :</strong> <span id="debut-alim"></span></p>
+      <p><strong>Année d’installation :</strong> <span id="annee"></span></p>
+      <p><strong>Distributeur :</strong> <span id="distributeur"></span></p>
+      <p><strong>MOA :</strong> <span id="moa"></span></p>
+    </section>
+  </main>
+
+</body>
+</html>
